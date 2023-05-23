@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 public class UserDTOtoUser implements Converter<UserDTO, User> {
     private final RoleDTOtoRole roleDTOtoRole;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public User convert(UserDTO source) {
-        if(source!=null){
-            User user= new User();
-            if (source.getId()!=null){
+        if (source != null) {
+            User user = new User();
+            if (source.getId() != null) {
                 user.setId(source.getId());
-            }else {
-                user.setPassword(bCryptPasswordEncoder.encode(source.getPassword()));
             }
-            user.setId(source.getId());
+            user.setPassword(bCryptPasswordEncoder.encode(source.getPassword()));
+
             user.setUsername(source.getUsername());
             user.setLastName(source.getLastName());
             user.setEmail(source.getEmail());
@@ -36,7 +36,7 @@ public class UserDTOtoUser implements Converter<UserDTO, User> {
             user.setState(source.getState());
             user.setEnabled(user.isEnabled());
             if (source.getRole() != null)
-            user.setRoles(source.getRole().stream().map(roleDTO -> roleDTOtoRole.convert(roleDTO)).collect(Collectors.toSet()));
+                user.setRoles(source.getRole().stream().map(roleDTO -> roleDTOtoRole.convert(roleDTO)).collect(Collectors.toSet()));
             return user;
         }
         return null;

@@ -31,11 +31,11 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
                 || request.getServletPath().matches("/admin(.*)")
 
-                || request.getServletPath().matches("/task(.*)")
+                || request.getServletPath().matches("/role(.*)")
 
-                || request.getServletPath().matches("/cleaner(.*)")
+                || request.getServletPath().matches("/jobPosting(.*)")
 
-                || request.getServletPath().matches("/(property.*)")
+
         ) {
             filterChain.doFilter(request, response);
         } else {
@@ -78,6 +78,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         }
 
     }
+    //token gjenerohet n momentin e log in kapet nga fronti dhe rruhet ne session
+
 
 }
 
