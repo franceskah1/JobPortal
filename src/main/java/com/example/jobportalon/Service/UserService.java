@@ -26,17 +26,10 @@ public class UserService {
    }
 
 
-   public UserDTO getUserById(String id){
-       long parseId;
-       try {
-           parseId = Long.parseLong(id);
-       }
-       catch (NumberFormatException e){
-           throw new NumberFormatException("This id:"+ id + "can't be parsed!");
-
-       }
-       return userToUserDTO.convert(userRepo.findById(parseId).orElseThrow(()->new NotFoundException("User with id:"+ id + "not found")));
-   }
+    public UserDTO findById(Long id) {
+        return userToUserDTO.convert(userRepo.findById(id).orElseThrow(() ->
+                new NotFoundException("User with id: " + id + "not found !")));
+    }
 
 
    public List<UserDTO>findAllUsers(){

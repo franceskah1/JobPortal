@@ -26,7 +26,7 @@ public class JobPostingsDTO {
     private double salaryRangeEnd;
 
 
-    private LocalDateTime jobPostDate;
+    private LocalDate jobPostDate;
 
 
     private LocalDate jobExpiryDate;
@@ -37,8 +37,11 @@ public class JobPostingsDTO {
 
     private String  jobType;
 
+    private String education_required;
 
-    private EmployerDTO employerDTO;
+    private String job_requirements;
+
+    private Long employersId;
 
 
 

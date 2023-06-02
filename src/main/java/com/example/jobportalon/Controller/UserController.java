@@ -12,13 +12,13 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
-    public void saveOrUpdate(@RequestBody UserDTO usersDTO){
-        userService.saveOrUpdate(usersDTO);
+@PostMapping
+public void saveOrUpdate(@RequestBody UserDTO usersDTO){
+userService.saveOrUpdate(usersDTO);
     }
 @GetMapping("/{id}")
-    public UserDTO findById(@PathVariable("id")String id){
-        return userService.getUserById(id);
+public UserDTO findById(@PathVariable("id")Long id){
+return userService.findById(id);
 }
 
 @GetMapping

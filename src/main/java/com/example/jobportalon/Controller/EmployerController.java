@@ -1,6 +1,7 @@
 package com.example.jobportalon.Controller;
 
 import com.example.jobportalon.DTO.EmployerDTO;
+import com.example.jobportalon.Entity.Employers;
 import com.example.jobportalon.Service.EmployerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/employer")
+@RequestMapping("/employee")
 public class EmployerController {
     private final EmployerService employerService;
 
@@ -22,8 +23,8 @@ public class EmployerController {
     }
 
     @GetMapping("/{id}")
-    public EmployerDTO getById(@PathVariable("id")String id){
-        return employerService.findById(id);
+    public Employers getById(@PathVariable("id")Long id){
+       return employerService.getEmployersById(id);
     }
 
 

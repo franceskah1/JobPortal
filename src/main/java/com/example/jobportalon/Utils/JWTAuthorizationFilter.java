@@ -25,13 +25,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         if (request.getServletPath().matches("/login(.*)")
-//                || request.getServletPath().matches("/employee(.*)")
+
+                || request.getServletPath().matches("/employee(.*)")
+
                 || request.getServletPath().matches("/user(.*)")
 
-                || request.getServletPath().matches("/admin(.*)")
+                || request.getServletPath().matches("/application(.*)")
 
-                || request.getServletPath().matches("/role(.*)")
+                || request.getServletPath().matches("/jobSeeker(.*)")
 
                 || request.getServletPath().matches("/jobPosting(.*)")
 

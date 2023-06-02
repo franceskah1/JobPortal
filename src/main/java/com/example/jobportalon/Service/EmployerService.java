@@ -73,5 +73,7 @@ public Employers save(Employers employers){
             throw new NotFoundException("Employer with this id:"+ id + "not found!");
         }
     }
-
+public Employers getEmployersById(Long id){
+        return employerRepo.findById(id).orElseThrow(()->new NotFoundException("Employee with this id:"+ id + "does not found!"));
+}
 }

@@ -1,22 +1,17 @@
 package com.example.jobportalon.Entity;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
+
 
 @Entity
 @Getter
@@ -26,18 +21,14 @@ import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
 public class User extends BaseEntity implements UserDetails {
     private String username;
 
-    private String lastName;
 
     private String email;
+
+
     private String password;
 
-    private String phoneNumber;
 
-    private String address;
 
-    private String city;
-
-    private String State;
 
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
@@ -104,6 +95,7 @@ public class User extends BaseEntity implements UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
+
 
 
 }

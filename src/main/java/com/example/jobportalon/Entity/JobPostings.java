@@ -28,12 +28,15 @@ public class JobPostings extends BaseEntity{
 
     private double salaryRangeEnd;
 
-   private LocalDateTime jobPostDate;
+   private LocalDate jobPostDate;
 
    private LocalDate jobExpiryDate;
 
    private boolean isActive;
 
+   private String education_required;
+
+   private String job_requirements;
 
    @Enumerated(EnumType.STRING)
     JobType jobType;

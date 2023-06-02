@@ -1,6 +1,7 @@
-package com.example.jobportalon.DTO;
+package com.example.jobportalon.Converter;
 
 import com.example.jobportalon.Converter.EmployerToEmployerDTO;
+import com.example.jobportalon.DTO.JobPostingsDTO;
 import com.example.jobportalon.Entity.JobPostings;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class JobPostingsToJobPostingsDTO implements Converter<JobPostings,JobPostingsDTO> {
-    private final EmployerToEmployerDTO employerToEmployerDTO;
+public class JobPostingsToJobPostingsDTO implements Converter<JobPostings, JobPostingsDTO> {
+ //   private final EmployerToEmployerDTO employerToEmployerDTO;
 
 
     @Override
@@ -26,7 +27,10 @@ public class JobPostingsToJobPostingsDTO implements Converter<JobPostings,JobPos
             jobPostingsDTO.setJobType(source.getJobType().name());
             jobPostingsDTO.setSalaryRangeStart(source.getSalaryRangeStart());
             jobPostingsDTO.setSalaryRangeEnd(source.getSalaryRangeEnd());
-            jobPostingsDTO.setEmployerDTO(employerToEmployerDTO.convert(source.getEmployers()));
+            jobPostingsDTO.setJob_requirements(source.getJob_requirements());
+            jobPostingsDTO.setEducation_required(source.getEducation_required());
+            jobPostingsDTO.setEmployersId(source.getEmployers().getId());
+         //   jobPostingsDTO.setEmployerDTO(employerToEmployerDTO.convert(source.getEmployers()));
             return jobPostingsDTO;
 
         }

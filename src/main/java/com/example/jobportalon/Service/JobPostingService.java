@@ -1,13 +1,14 @@
 package com.example.jobportalon.Service;
 import com.example.jobportalon.DTO.JobPostingsDTO;
-import com.example.jobportalon.DTO.JobPostingsDTOtoJobPostings;
-import com.example.jobportalon.DTO.JobPostingsToJobPostingsDTO;
+import com.example.jobportalon.Converter.JobPostingsDTOtoJobPostings;
+import com.example.jobportalon.Converter.JobPostingsToJobPostingsDTO;
+import com.example.jobportalon.Exception.NotFoundException;
 import com.example.jobportalon.Repository.JobPostingRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,7 +18,7 @@ public class JobPostingService {
     private final JobPostingsToJobPostingsDTO jobPostingsToJobPostingsDTO;
     private final JobPostingRepo jobPostingRepo;
 
-//get all jobpostings
+//get All JobPostings
 
  public List<JobPostingsDTO>getAll(){
         return jobPostingRepo.findAll().stream().map(jobPostingsToJobPostingsDTO::convert).collect(Collectors.toList());
@@ -28,11 +29,13 @@ public class JobPostingService {
 public JobPostingsDTO getById(Long id){
     return jobPostingsToJobPostingsDTO.convert(jobPostingRepo.findById(id).get());
 }
-
-
+// get job posting by keyword
+public JobPostingsDTO findByLocation(String jobLocation){
+     return jobPostingsToJobPostingsDTO.convert(jobPostingRepo.getJobPostingsByJobLocation(jobLocation).orElseThrow(()->new NotFoundException("Please select another location!")));
+}
 
 public JobPostingsDTO saveJobPosting(JobPostingsDTO jobPostingsDTO){
-    return jobPostingsToJobPostingsDTO.convert(jobPostingRepo.save(jobPostingsDTOtoJobPostings.convert(jobPostingsDTO)));
+    return jobPostingsToJobPostingsDTO.convert(jobPostingRepo.save(Objects.requireNonNull(jobPostingsDTOtoJobPostings.convert(jobPostingsDTO))));
 }
 
 }

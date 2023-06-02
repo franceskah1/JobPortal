@@ -4,6 +4,7 @@ import com.example.jobportalon.DTO.UserDTO;
 import com.example.jobportalon.Entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class UserToUserDTO implements Converter<User, UserDTO> {
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final RoleToRoleDTO toRoleDTO;
     @Override
     public UserDTO convert(User source) {
@@ -20,12 +23,8 @@ public class UserToUserDTO implements Converter<User, UserDTO> {
             UserDTO userDTO=new UserDTO();
             userDTO.setId(source.getId());
             userDTO.setUsername(source.getUsername());
-            userDTO.setLastName(source.getLastName());
             userDTO.setEmail(source.getEmail());
-            userDTO.setPhoneNumber(source.getPhoneNumber());
-            userDTO.setCity(source.getCity());
-            userDTO.setState(source.getState());
-            userDTO.setAddress(source.getAddress());
+            userDTO.setPassword(bCryptPasswordEncoder.encode(source.getPassword()));
             userDTO.setEnabled(source.isEnabled());
             userDTO.setRole(source.getRoles()!=null ? source.getRoles().stream().map(toRoleDTO::convert).collect(Collectors.toSet()) : null);
             return userDTO;
