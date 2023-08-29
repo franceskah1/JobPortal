@@ -1,4 +1,6 @@
 # JobPortal
+The Job Portal System is a comprehensive web application built using Spring Boot, designed to connect job seekers and employers in a user-friendly and efficient manner. The platform allows users to search and apply for job openings, while employers can post job listings and review applications. The project integrates features such as user authentication, job listing management, application tracking, and notifications.
+
 1.	User Registration and Authentication:
 •	Users should be able to register for an account with their email address or social media accounts.
 •	Implement a secure authentication system to protect user information.
